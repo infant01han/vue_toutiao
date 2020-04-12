@@ -8,6 +8,11 @@ import Search from '@/pages/Search'
 import Profile from '@/pages/Profile'
 import PostDetail from '@/pages/PostDetail'
 import MoreComments from '@/pages/MoreComments'
+import MyFollow from '@/pages/MyFollow'
+const EditProfile = () => import('@/pages/EditProfile');
+const MyComments = () => import('@/pages/MyComments');
+const MyCollections = () => import('@/pages/MyCollections');
+const tabManager = () => import('@/pages/tabManager');
 Vue.use(Router)
 
 export default new Router({
@@ -50,6 +55,29 @@ export default new Router({
       path: '/profile',
       name: 'profilePage',
       component: Profile
+    },
+    {
+      path: '/myFollow',
+      name: 'myfollowPage',
+      component: MyFollow
+    },
+    {
+      path: '/editProfile',
+      name: 'editProfile',
+      component: EditProfile
+    }, {
+      path: '/myComments',
+      name: 'myCommentsPage',
+      component: MyComments
+    }, {
+      path: '/myCollections',
+      name: 'myCollections',
+      component: MyCollections
+    },
+    {
+      path: '/tabManager',
+      name: 'tabManagerPage',
+      component: tabManager
     }
   ]
 })
