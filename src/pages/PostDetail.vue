@@ -1,6 +1,8 @@
 
 <template>
       <div>
+        <postDetailHead :post="post">
+        </postDetailHead>
         <div class="mainContent">
         <div class="title">{{post.title}}</div>
         <video
@@ -54,11 +56,13 @@
 
 <script>
     import postDetailFooter from '@/components/postDetailFooter'
+    import postDetailHead from '@/components/postDetailHead'
     import comment from '@/components/comment'
     export default {
         name: "PostDeatail",
         components:{
           postDetailFooter,
+          postDetailHead,
           comment
         },
         data(){
@@ -103,6 +107,19 @@
                   })
           },
           like(){
+              this.$axios({
+                url:'/post_like/' + this.post.id,
+                method:'post'
+              }).then(res=>{
+                if(res.message=='点赞成功'){
+                  this.post.has_like = true
+                  this.post.like_length += 1
+                } else if (res.message=='取消点赞成功'){
+                  this.post.has_like = false
+                  this.post.like_length -= 1
+                }
+                console.log(res)
+              })
           }
         }
     }
